@@ -11,9 +11,17 @@ let BLEdevice = null;
 let BLEservice = null;
 let BLEcharacteristic = null;
 
+function window_fix(){
+    $('body').css({
+        'position': 'fixed',
+        'top': '-' + $(window).scrollTop() + 'px',
+    });
+}
+
 addEventListener("load", function(e) {
     document.querySelector('#test').innerHTML = 'Hello, world!';
     BLEstatus = BLEconnection.disconnected;
+    window_fix();
 });
 
 const onDisconnected = () => {
