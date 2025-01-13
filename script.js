@@ -11,17 +11,22 @@ let BLEdevice = null;
 let BLEservice = null;
 let BLEcharacteristic = null;
 
-function window_fix(){
-    $('body').css({
-        'position': 'fixed',
-        'top': '-' + $(window).scrollTop() + 'px',
-    });
+// スクロール禁止
+function ban_scroll() {
+	// PC用
+	document.addEventListener("mousewheel", notscroll, { passive: false });
+	// スマホ用
+	document.addEventListener("touchmove", notscroll, { passive: false });
+}
+// スクロール禁止関数
+function notscroll(e) {
+	e.preventDefault();
 }
 
 addEventListener("load", function(e) {
     document.querySelector('#test').innerHTML = 'Hello, world!';
     BLEstatus = BLEconnection.disconnected;
-    window_fix();
+    ban_scroll();
 });
 
 const onDisconnected = () => {
